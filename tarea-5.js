@@ -4,3 +4,17 @@
 // vas a crear un botón de acción que una vez que lo apretás, va a
 // mostrar toda la información junta en un campo de texto
 // Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
+const $saludoUsuario = document.querySelector("#saludoUsuario");
+const $primerNombre = document.querySelector("#primerNombre");
+
+$botonEnviarFormulario.onclick = function () {
+    if (!$primerNombre.value || !$edad.value) return;
+
+    saludarUsuario($primerNombre.value.toLowerCase());
+
+    return false;
+};
+
+function saludarUsuario(primerNombre) {
+    $saludoUsuario.textContent = `Bienvenido ${primerNombre}!`;
+}
