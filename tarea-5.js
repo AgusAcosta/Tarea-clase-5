@@ -61,7 +61,13 @@ function calcularTiempoTotalVideos(horasTotales, minutosTotales, segundosTotales
     const minutosFinales = minutosTotales % 60 + Math.floor(segundosTotales / 60)
     const horasFinales = horasTotales + Math.floor(minutosTotales / 60)
 
-    console.log([horasFinales, minutosFinales, segundosFinales])
+    return [horasFinales, minutosFinales, segundosFinales]
 }
 
-function mostrarTiempoTotalVideos() {}
+function mostrarTiempoTotalVideos(tiempoTotalVideos) {
+    const horasFinales = tiempoTotalVideos[0]
+    const minutosFinales = tiempoTotalVideos[1]
+    const segundosFinales = tiempoTotalVideos[2]
+
+    $tiempoTotalVideos.textContent = `Tiempo total de video: ${horasFinales} horas, ${minutosFinales} minutos y ${segundosFinales} segundos.`
+}
