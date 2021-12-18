@@ -11,8 +11,8 @@ const $lista = document.querySelector("ul")
 const arrayNumerosLI = []
 
 function inicializar() {
-    darValoresRandomLI()
-    pushearValoresLI(arrayNumerosLI)
+    darValoresRandom("li")
+    pushearValores(arrayNumerosLI, "li")
 }
 
 inicializar()
@@ -85,9 +85,9 @@ console.log(`El número más pequeño es: ${calcularMinimo(arrayNumerosLI)}`)
 console.log(`El número más grande es: ${calcularMaximo(arrayNumerosLI)}`)
 console.log(`El número más frecuente es: ${calcularMasRepetido(arrayNumerosLI)}`)
 
-function darValoresRandomLI() {
+function darValoresRandom(elemento) {
     for (const childNode of $lista.childNodes) {
-        if(childNode.localName === "li"){
+        if(childNode.localName === elemento){
             childNode.textContent = generarNumeroRandom(10)
         }
     }
@@ -97,9 +97,9 @@ function generarNumeroRandom(numeroMaximo) {
     return Math.floor(Math.random() * numeroMaximo)
 }
 
-function pushearValoresLI(array) {
+function pushearValores(array, elemento) {
     for (const childNode of $lista.childNodes) {
-        if(childNode.localName === "li"){
+        if(childNode.localName === elemento){
             array.push(childNode.textContent)
         }
     }
