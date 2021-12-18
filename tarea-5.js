@@ -11,52 +11,29 @@ const $formulario = document.querySelector("form")
 const $botonCalcularTiempoVideos = document.querySelector("#botonCalcularTiempoVideos")
 
 $botonCalcularTiempoVideos.onclick = function() {
-    const horasTotales = calcularHorasTotales()
-    const minutosTotales = calcularMinutosTotales()
-    const segundosTotales = calcularSegundosTotales()
-    const tiempoTotalVideos = calcularTiempoTotalVideos(horasTotales, minutosTotales, segundosTotales)
+    const tiempoTotalVideos = calcularTiempoTotalVideos()
     mostrarTiempoTotalVideos(tiempoTotalVideos)
 
     return false;
 }
 
-function calcularHorasTotales() {
+function calcularTiempoTotalVideos() {
     let horasTotales = 0
-
-    for (const childNode of $formulario.childNodes) {
-        if (childNode.className === "horas" && (Number(childNode.value) > 0)) {
-            horasTotales += Number(childNode.value)
-        }
-    }
-
-    return horasTotales
-}
-
-function calcularMinutosTotales() {
     let minutosTotales = 0
-
-    for (const childNode of $formulario.childNodes) {
-        if (childNode.className === "minutos" && (Number(childNode.value) > 0)) {
-            minutosTotales += Number(childNode.value)
-        }
-    }
-
-    return minutosTotales
-}
-
-function calcularSegundosTotales() {
     let segundosTotales = 0
 
     for (const childNode of $formulario.childNodes) {
-        if (childNode.className === "segundos" && (Number(childNode.value) > 0)) {
+        if((Number(childNode.value) <= 0)) continue
+
+        if (childNode.className === "horas") {
+            horasTotales += Number(childNode.value)
+        } else if (childNode.className === "minutos") {
+            minutosTotales += Number(childNode.value)
+        } else if (childNode.className === "segundos") {
             segundosTotales += Number(childNode.value)
         }
     }
 
-    return segundosTotales
-}
-
-function calcularTiempoTotalVideos(horasTotales, minutosTotales, segundosTotales) {
     const segundosFinales = segundosTotales % 60
     const minutosFinales = minutosTotales % 60 + Math.floor(segundosTotales / 60)
     const horasFinales = horasTotales + Math.floor(minutosTotales / 60)
